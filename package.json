@@ -7,11 +7,12 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "Server": "json-server --watch db.json --port 3001"
+    "Server": "json-server-auth db.json --port $PORT --host 0.0.0.0"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.12.0",
     "axios": "^1.20.0",
+    "json-server-auth": "^2.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-redux": "^9.3.0",
