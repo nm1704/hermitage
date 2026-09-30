@@ -14,7 +14,7 @@ export default function AddPropertyForm(){
 
         const handleSubmit= (e)=> {
             e.preventDefault()
-            axios.post('http://localhost:3001/properties',formData)
+            axios.post('${API_URL}/properties',formData)
             .then ((response)=>{
                 console.log("Created:",response.data)
                 setFormData({title:'',location:'',price:''})

@@ -2,6 +2,7 @@ import {useState, useEffect} from "react"
 import { useParams, Link } from 'react-router-dom'
 //import { properties } from '../data/properties'
 import axios from "axios"
+import { API_URL } from '../config'
 
 export default function PropertyDetail() {
   const { id } = useParams()
@@ -10,7 +11,10 @@ export default function PropertyDetail() {
 
   //const property = properties.find((p) => p.id === Number(id))
   useEffect(()=>{
-    axios.get(`http://localhost:3001/properties/${id}`)
+    
+// ...
+axios.get(`${API_URL}/properties/${id}`)
+    //axios.get(`http://localhost:3001/properties/${id}`)
     .then((response)=> setProperty(response.data))
     .catch(()=>setProperty(null))
     .finally(()=>setLoading(false))

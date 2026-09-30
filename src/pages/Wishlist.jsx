@@ -10,7 +10,8 @@ export default function Wishlist() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    axios.get('http://localhost:3001/properties')
+   axios.get(`${API_URL}/properties`)
+    // axios.get('${API_URL/properties')
       .then((res) => setAllProperties(res.data))
       .finally(() => setLoading(false))
   }, [])

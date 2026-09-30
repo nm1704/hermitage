@@ -8,6 +8,7 @@ import PropertyList from "../components/PropertyList";
 import { setSearchTerm,setMinBeds,setMaxPrice } from "../redux/filtersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import PropertyCardSkeleton from "../components/PropertyCardSkeleton";
+import { API_URL } from "../../vite.config";
 export default function Home() {
     const [properties, setProperties]= useState([])
     const [loading, setLoading] = useState(true)
@@ -20,7 +21,7 @@ export default function Home() {
     //const [maxPrice,setMaxPrice] = useState(5000)
 
     useEffect(()=>{
-        axios.get(`http://localhost:3001/properties`)
+        axios.get(`${API_URL}/properties`)
         .then((response)=>{
             setProperties(response.data)
         })
