@@ -3,6 +3,7 @@ import { useSelector } from "react-redux"
 import axios from "axios"
 import PropertyList from "../components/PropertyList"
 import SectionHeading from "../components/SectionHeading"
+import { API_URL } from "../config";
 
 export default function Wishlist() {
   const favoriteIds = useSelector((state) => state.favorites)

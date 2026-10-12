@@ -19,7 +19,7 @@ export default function PropertyCard({ property }) {
     // className="group bg-white rounded-2xl border border-line overflow-hidden hover:shadow-lg hover:shadow-ink/5 transition-shadow"
     // >
     <Link
-      to={`/property/${id}`}
+      to={`/property/ ${id}`}
       className="group bg-white rounded-2xl border border-line overflow-hidden hover:shadow-lg hover:shadow-ink/5 transition-shadow block relative"
     >
       <button
@@ -46,7 +46,7 @@ export default function PropertyCard({ property }) {
         <div className="flex items-start justify-between">
           <h3 className="font-display text-lg text-ink">{title}</h3>
           <span className="font-display text-lg text-brass">
-            {price}
+            ₹{price}
             <span className="text-xs text-ink/40 font-body">/mo</span>
           </span>
         </div>
