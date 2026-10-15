@@ -46,8 +46,8 @@ export default function PropertyCard({ property }) {
         <div className="flex items-start justify-between">
           <h3 className="font-display text-lg text-ink">{title}</h3>
           <span className="font-display text-lg text-brass">
-            ₹{price}
-            <span className="text-xs text-ink/40 font-body">/mo</span>
+            {price}
+            {/* <span className="text-xs text-ink/40 font-body">/mo</span> */}
           </span>
         </div>
 

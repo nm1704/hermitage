@@ -50,7 +50,7 @@ axios.get(`${API_URL}/properties/${id}`)
       <h1 className="font-display text-3xl text-ink mt-6">{property.title}</h1>
       <p className="font-body text-sage mt-1">{property.location}</p>
       <p className="font-display text-2xl text-brass mt-4">
-        ${property.price}<span className="text-sm text-ink/40 font-body">/mo</span>
+        {property.price}<span className="text-sm text-ink/40 font-body"></span>
       </p>
 
       <div className="flex gap-4 mt-6 pt-6 border-t border-line font-body text-sm text-ink/60">

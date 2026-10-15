@@ -9,6 +9,7 @@ import { setSearchTerm,setMinBeds,setMaxPrice } from "../redux/filtersSlice";
 import { useDispatch, useSelector } from "react-redux";
 import PropertyCardSkeleton from "../components/PropertyCardSkeleton";
 import { API_URL } from "../config";
+import { parsePrice } from '../utils/price'
 export default function Home() {
     const [properties, setProperties]= useState([])
     const [loading, setLoading] = useState(true)
@@ -32,14 +33,27 @@ export default function Home() {
             setLoading(false)
         })
     },[])
-        const filteredProperties = properties.filter((property)=>{
-        const matchesSearch = 
-        property.location.toLowerCase().includes(searchTerm.toLowerCase())||
-        property.title.toLowerCase().includes(searchTerm.toLowerCase())
-        const matchesBeds = property.beds>=minBeds
-        const matchesPrice= property.price <= maxPrice
-        return matchesSearch && matchesBeds && matchesPrice
-    })
+    const maxLimit = properties.length
+    ? Math.max(...properties.map((p) => parsePrice(p.price)))
+    : 0
+
+const filteredProperties = properties.filter((property) => {
+  const matchesSearch =
+    property.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    property.title.toLowerCase().includes(searchTerm.toLowerCase())
+  const matchesBeds = property.beds >= minBeds
+  const matchesPrice = maxPrice === null || parsePrice(property.price) <= maxPrice
+  return matchesSearch && matchesBeds && matchesPrice
+})
+        // const filteredProperties = properties.filter((property)=>{
+        // const matchesSearch = 
+        // property.location.toLowerCase().includes(searchTerm.toLowerCase())||
+        // property.title.toLowerCase().includes(searchTerm.toLowerCase())
+        // const matchesBeds = property.beds>=minBeds
+        // const matchesPrice= property.price <= maxPrice
+        // return matchesSearch && matchesBeds && matchesPrice
+    //})
+    //console.log({ API_URL, fetched: properties.length, searchTerm, minBeds, maxPrice })
     return (
      <>
         {/* <Hero className="min-h-screen"/> */}
@@ -55,7 +69,8 @@ export default function Home() {
         <Filters
             minBeds={minBeds}
             setMinBeds={(value)=>dispatch(setMinBeds(value))}
-            maxPrice={maxPrice}
+            maxPrice={maxPrice ?? maxLimit}
+            maxLimit={maxLimit}
             setMaxPrice={(value)=>dispatch(setMaxPrice(value))}
         />
         {loading && (<div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">

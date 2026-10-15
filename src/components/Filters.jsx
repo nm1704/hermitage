@@ -1,4 +1,6 @@
-export default function Filters({minBeds,setMinBeds,maxPrice,setMaxPrice}){
+import { formatPrice } from "../utils/price"
+export default function Filters({minBeds,setMinBeds,maxPrice,setMaxPrice,maxLimit}){
+    
     return(
         <div className="flex gap-4 mb-6">
             <select
@@ -13,13 +15,13 @@ export default function Filters({minBeds,setMinBeds,maxPrice,setMaxPrice}){
             </select>
         <input 
         type="range"
-        min="500"
-        max="3000"
-        step="100"
-        value={maxPrice}
+        min="0"
+        max={maxLimit}
+        step= "500000"//{Math.max(1,Math.round(maxLimit/50))}
+        value={maxPrice ?? maxLimit ?? 0}
         onChange={(e)=> setMaxPrice(Number(e.target.value))}
         />
-        <span className="font-body text-sm text-ink/60 flex-col sm:flex-row">Up to ₹{maxPrice}</span>
+        <span className="font-body text-sm text-ink/60 flex-col sm:flex-row">Up to{formatPrice(Number(maxPrice))}</span>
         </div>
     )
 }

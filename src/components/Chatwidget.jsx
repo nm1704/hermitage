@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { properties } from "../data/properties"
+import { parsePrice } from "../utils/price"
 
 function getBotReply(userText) {
   const text = userText.toLowerCase()
@@ -21,7 +22,7 @@ function getBotReply(userText) {
   }
   if (priceMatch) {
     const price = Number(priceMatch[1])
-    results = results.filter((p) => p.price <= price)
+    results = results.filter((p) => parsePrice(p.price) <= price)
   }
   if (cityMatch) {
     results = results.filter((p) => p.location.toLowerCase().includes(cityMatch))
